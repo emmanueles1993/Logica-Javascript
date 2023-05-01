@@ -1,0 +1,48 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+
+    function dibujarRectangulo(x, y, base, altura, color) {
+        var pantalla = document.querySelector("canvas");
+        var pincel = pantalla.getContext("2d");
+
+        pincel.fillStyle=color;
+        pincel.fillRect(x,y, base, altura);
+        pincel.strokeStyle="black";//trazos
+        pincel.strokeRect(x,y, base, altura);// base es como el ancho y altura es altura 
+    }
+
+    function escribirTexto(x , y, texto) { //coordenadas y texto
+        var pantalla = document.querySelector("canvas");
+        var pincel = pantalla.getContext("2d");
+
+        pincel.font="15px Georgia"; // tamaño de fuente
+        pincel.fillStyle="black"; // color de fuente
+        pincel.fillText(texto, x, y);  //texto y coordenadas    
+    }
+
+    function dibujarBarra(x, y, serie, colores, texto) {
+
+        escribirTexto(x, y - 10, texto);//llamando a la funcion con coordenadas y texto por parametros
+
+        var sumaAltura = 0; // acumulador
+        for (var i = 0; i < serie.length; i++) { //.length devuelve la longitud del arreglo nombrado serie(la longitud de cada uno es 5). (nuestros arreglos "serie2009", "serie2019") (i++) aumenta un valor  cada vez que se ejecuta el bloque de código en el ciclo. si no lo ponemos se da infinitamente
+
+            var altura = serie[i];//aqui indica altura es igual a el valor almacenado en la matriz en el índice i.
+         // "serie2009" var serie2009 = [6, 47, 41, 3, 3];
+        // "serie2019" var serie2019 = [81, 9, 3, 3, 4];
+        // Es decir altura es igual a mi indice 0, 1, 2, 3, 4 de mi arreglo en serie2009 y serie2019.
+            dibujarRectangulo(x, y + sumaAltura, 50, altura, colores[i]);//sumaaltura vale 0 , colores[i] ,adentro de ese array
+            sumaAltura = sumaAltura + altura; // Ahora bien, como altura es igual al valor de nuestro indice en el arreglo de serie :var serie2009 = [6, 47, 41, 3, 3]        
+}
+    }
+
+    var colores = ["blue","green","yellow", "red","gray"];//array de colores
+    var serie2009 = [6,47,41,3,3]; //array de series 2009 , esto marca el porcentaje del color
+    var serie2019 = [81,9,3,3,4]; //array de series 2019
+
+    dibujarBarra(50,50, serie2009, colores, "2009");//1.valor de x 2.valor de y 3.lo que hay dentro del array 2009 
+    // 4.lo que hay dentro del array colores 5.el texto a colocar
+    dibujarBarra(150, 50, serie2019, colores, "2019");
+
+</script>

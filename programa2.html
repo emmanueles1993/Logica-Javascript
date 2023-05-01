@@ -1,0 +1,33 @@
+<canvas width="600" height="400"> </canvas> <!-- pizarra -->
+
+<script>
+
+	function dibujarcuadrado(x,y,color){
+
+	var pantalla = document.querySelector("canvas");//para selecionar la etiqueta canvas y capturar la entrada del usuario,  recibe un parámetro del nombre de las etiquetas que queremos buscar del mundo HTML en este caso canvas
+	var pincel = pantalla.getContext("2d");//encargado de dibujar en la pizarra, cont getContext,le decimos traeme todo el contenido que este en la pantalla
+	
+	pincel.fillStyle = color; //propiedad
+	pincel.fillRect(x,y,50,50);//funcion
+	pincel.strokeStyle = "black";
+	pincel.strokeRect(x,y,50,50);
+}
+/*
+	var x = 0 //acumulador
+	while( x < 600){
+
+	dibujarcuadrado(x,0,"red");
+	dibujarcuadrado(x,50,"yellow");
+	dibujarcuadrado(x,100,"green");
+
+	x = x + 50; //acumulador
+}
+*/
+	for(var x = 0; x < 600; x = x + 50){
+
+	dibujarcuadrado(x,0,"red");
+	dibujarcuadrado(x,50,"yellow");
+	dibujarcuadrado(x,100,"green");
+	}
+
+</script>

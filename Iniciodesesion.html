@@ -1,0 +1,30 @@
+<meta charset="UTF-8">
+
+<script>
+
+    var inicioDeSesionRegistrado = "alura";
+    var contrasenhaRegistrada = "alura321";
+
+    var maximoIntentos = 3; //variable con limite de intentos
+    var intentoActual = 1; //variable de incremento
+
+    while(intentoActual <= maximoIntentos){
+        var inicioDeSesionIngresado = prompt("Ingrese su usuario");
+        var contrasenhaIngresada = prompt("Ingrese su contraseña");
+
+        if(inicioDeSesionRegistrado == inicioDeSesionIngresado && contrasenhaRegistrada == contrasenhaIngresada){
+            alert("Bienvenido al sistema" + inicioDeSesionIngresado);
+            intentoActual = maximoIntentos; // aqui tambien se puede usar break, pero en este caso se hace asi para que cuando acertemos , el intento valga el maximo intento y se rompa el ciclo 
+        } else {
+            if (intentoActual == 3) {
+                alert("Agotaste el número permitido de intentos!");
+            } else {
+                alert("Inicio de sesión inválido. Favor intente de nuevo");
+            }
+        }
+
+       // vaya al próximo intento 
+        intentoActual = intentoActual +1  
+    }
+
+</script>

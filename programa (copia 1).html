@@ -1,0 +1,28 @@
+<canvas width="600" height="400"> </canvas>
+
+<script>
+	var pantalla = document.querySelector("canvas");//para selecionar la etiqueta canvas y capturar la entrada del usuario,  recibe un parámetro del nombre de las etiquetas que queremos buscar del mundo HTML en este caso canvas
+	var pincel = pantalla.getContext("2d");//encargado de dibujar en la pizarra, cont getContext,le decimos traeme todo el contenido que este en la pantalla
+	pincel.fillStyle = "lightgrey";//Es una propiedad del objeto pincel y se le está atribuyendo el color lightgrey.
+	pincel.fillRect(0,0,600,400);// es una función (método) del objeto pincel que en nuestro código la usábamos para diseñar (dibujar) las figuras.
+
+	pincel.fillStyle = "green"; //propiedad
+	pincel.fillRect(0,0,200,400);//funcion	
+
+	pincel.fillStyle = "red"; //propiedad
+	pincel.fillRect(400,0,200,400);//funcion
+
+	pincel.fillStyle = "yellow"; //propiedad
+	pincel.beginPath();
+	pincel.moveTo(300,200); //el centro de la bandera ya que es 600 y 400
+	pincel.lineTo(200,400); //hara la primera linea del triangulo 
+	pincel.lineTo(400,400); //hara la segunda linea del triangulos
+	pincel.fill(); //rellenalo con el color de arriba el amarillo
+
+	pincel.fillStyle = "blue"; //propiedad
+	pincel.beginPath();
+	pincel.arc(300,200,50,0,2*3.14) //300,200(centro) 50(tamaño)
+	pincel.fill();
+
+ 
+</script>

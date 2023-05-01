@@ -1,0 +1,41 @@
+<meta charset="UTF-8">
+
+<h1>PROGRAMA JUEGO DE LOTERIA</h1>
+
+<script>
+
+    function saltarLinea() {
+        document.write("<br>");    
+        document.write("<br>");    
+        document.write("<br>");    
+    }  
+
+    function imprimir(frase) {
+        document.write(frase);
+        saltarLinea();
+    } 
+
+    function sorteo(n) { //n es el parametro para numero
+            return Math.round(Math.random()*n);//para que el numero sea entero se redondea y se escoge al azar y el rango del numero es la multiplicacion
+        }   
+
+    var numeroPensado = sorteo(10);//se llama a la funcion y se pone el numero que va a estar dentro del rango que es 10
+    var numeroLanzado = parseInt(prompt("Ingrese un número entre 0-10"))
+
+    if (numeroPensado == numeroLanzado){
+        imprimir("usted acertó");
+    }
+
+    else {
+        imprimir("usted erró, el número pensado era " + numeroPensado);    
+    }
+
+    if (numeroLanzado > numeroPensado){
+         imprimir("usted erro, el numero Pensado era menor que tu numero");
+        } 
+
+     else{
+         imprimir("usted erro, el numero pensado era mayor que tu numero");
+        }
+    
+</script>

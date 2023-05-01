@@ -1,0 +1,66 @@
+<canvas width="600" height="400"> </canvas>
+
+<script>
+	var pantalla = document.querySelector("canvas");
+	var pincel = pantalla.getContext("2d");
+
+	pincel.fillStyle = "lightgrey";
+	pincel.fillRect(0,0,600,400);
+ 	var radio = 10;
+	var xAleatorio;//aqui se crean para poder utilizarlos en el ambito de todo el procedimiento ,ahi si puedo usarla en diferentes funciones , incluso fuera de las funciones
+	var yAleatorio;
+
+function disenarCircunferencia(x,y,radio,color){	
+	pincel.fillStyle = color;
+	pincel.beginPath();
+	pincel.arc(x,y,radio,0,2*Math.PI);
+	pincel.fill();
+
+}
+
+function limpiarPantalla(){ //limpia la pizarra o pantalla para que se vea la animacion
+
+	pincel.clearRect(0,0,600,400);
+
+}
+
+var x = 0 //recuerda que la cordenada x va en forma horizontal , inicia en 0 la animacion
+
+
+
+function disenarObjetivo(x,y){
+
+disenarCircunferencia(x,y,radio+20,"red");
+disenarCircunferencia(x,y,radio+10,"white");
+disenarCircunferencia(x,y,radio,"red");
+}
+
+function sortearPosicion(maximo){
+	return Math.floor(Math.random()*maximo);
+
+}
+function actualizarPantalla(){
+
+	limpiarPantalla();
+	xAleatorio = sortearPosicion(600);// si a las variables las declaro var xAleatorio, var yAleatorio , estan en el ambito de esta funcion y no las puedo utilizar fuera de esa funcion, asi que las declaro afuera y las uso aqui
+	yAleatorio = sortearPosicion(400);
+	disenarObjetivo(xAleatorio,yAleatorio);
+	x++; //incrementa la cordenada para que se vaya moviendo
+}
+
+setInterval(actualizarPantalla,3000)
+//con setInterval controlamos el tiempo de nuestra animacion
+function disparar(evento){
+	var x = evento.pageX - pantalla.offsetLeft; //para saber la posicion en la que hacemos click la coordenada y con offsetLeft resta lo que esta sobrando a la izquierda
+	var y = evento.pageY - pantalla.offsetTop; //para saber la posicion en la que hacemos click la coordenada y con offsetLeft resta lo que esta sobrando arriba
+
+if ((x < xAleatorio + radio) && //marca el centro mas pequeño por que colocamos radio o 10 , tambien con 20 marca el blanco
+	(x > xAleatorio - radio) && //verifica si la coordenada x del punto es menor al perimetro izquierdo del borde izquierdo del círculo.
+	(y < yAleatorio + radio) && //verifica si la coordenada y del punto es menor  al  perimetro  superior del círculo
+	(y > yAleatorio - radio) ){ //verifica si la coordenada y del punto es mayor  del perimetro  inferior del círculo
+	alert("Tiro certero");
+	}
+}
+pantalla.onclick = disparar;
+
+</script>
